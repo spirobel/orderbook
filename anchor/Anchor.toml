@@ -3,9 +3,10 @@
 [features]
 resolution = true
 skip-lint = false
+seeds = true
 
 [programs.localnet]
-anchor = "2uVqRzV8VRhiVcmxa9icADma7Zg5r2S56JFD7thy9f13"
+statelessratio = "ERNmR8VbsNrrrJtpnuwaLtsd1hkZ9oAhi8XAZbqJtUZZ"
 
 [registry]
 url = "https://api.apr.dev"
