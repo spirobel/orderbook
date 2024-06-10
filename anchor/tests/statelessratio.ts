@@ -16,7 +16,7 @@ import {
 } from "@solana/spl-token";
 import { airdropIfRequired } from "@solana-developers/helpers";
 
-describe("statlessratio", () => {
+describe("statelessratio", () => {
   // Configure the client to use the local cluster.
   anchor.setProvider(anchor.AnchorProvider.env());
 
