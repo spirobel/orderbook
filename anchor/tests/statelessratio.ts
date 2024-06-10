@@ -30,12 +30,20 @@ describe("statelessratio", () => {
   let tokenAccountB: Account;
 
   before(async () => {
-    await airdropIfRequired(
-      connection,
+    const airdropSignature = await connection.requestAirdrop(
       payer.publicKey,
-      LAMPORTS_PER_SOL,
       LAMPORTS_PER_SOL
     );
+    const latestBlockHash = await connection.getLatestBlockhash();
+    //connection.confirmTransaction({signature: "sdf"}, "finalized")
+    // airdropIfRequired(connection)
+    const confirmedTx = await connection.confirmTransaction({
+      blockhash: latestBlockHash.blockhash,
+      lastValidBlockHeight: latestBlockHash.lastValidBlockHeight,
+      signature: airdropSignature,
+    });
+    // Confirm the transaction.
+    console.log(`Confirmed transaction 1: ${confirmedTx.context.slot}`);
     const mint = await createMint(
       connection,
       payer,
