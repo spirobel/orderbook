@@ -8,11 +8,14 @@ seeds = true
 [programs.localnet]
 statelessratio = "ERNmR8VbsNrrrJtpnuwaLtsd1hkZ9oAhi8XAZbqJtUZZ"
 
+[programs.devnet]
+statelessratio = "ERNmR8VbsNrrrJtpnuwaLtsd1hkZ9oAhi8XAZbqJtUZZ"
+
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "Localnet"
+cluster = "devnet"
 wallet = "~/.config/solana/id.json"
 
 [scripts]
