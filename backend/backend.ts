@@ -101,7 +101,7 @@ const navbar = (mini: Mini<typeof MaybeLoggedin.$Data>) => mini.html`
 
   <div id="menubar">
     <ul>
-      <li><a href="#">Trollbox</a></li>
+      <li><a href="#">Stateless Orderbook</a></li>
 
       <li><div id="login"> 
       <div class="wallet-adapter-dropdown">         
