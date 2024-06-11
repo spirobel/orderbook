@@ -54,7 +54,7 @@ export function chatForm(mini: Mini) {
       chat();
 
       // Initialize chat display
-      updateChatDisplay("Welcome to the chat!");
+      updateChatDisplay("trollbox:");
   </script>`;
 }
 
@@ -97,6 +97,6 @@ export function readOnlyChat(mini: Mini) {
       chat();
 
       // Initialize chat display
-      updateChatDisplay("Welcome to the chat!");
+      updateChatDisplay("trollbox:");
   </script>`;
 }
