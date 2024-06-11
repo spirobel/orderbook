@@ -8,12 +8,10 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 import { PhantomWalletAdapter } from "@solana/wallet-adapter-phantom";
 import { useWallet } from "@solana/wallet-adapter-react";
 import type { SolanaSignInInput } from "@solana/wallet-standard-features";
 import { BaseWalletMultiButton } from "./solana-wallet-adapter-react-ui/BaseWalletMultiButton.tsx";
-import { clusterApiUrl } from "@solana/web3.js";
 import { useSnackbar } from "notistack";
 import type { VariantType } from "notistack";
 import bs58 from "bs58";
@@ -24,11 +22,23 @@ import {
   ConnectionProvider,
   WalletProvider,
 } from "@solana/wallet-adapter-react";
+import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
+
 import {
   WalletDisconnectButton,
   WalletModalProvider,
   WalletMultiButton,
 } from "@solana/wallet-adapter-react-ui";
+import { clusterApiUrl, Connection } from "@solana/web3.js";
+
+import { CreateOrder, CreateOrderButton } from "./create-order/CreateOrder.tsx";
+declare global {
+  var SolanaConnection: Connection;
+}
+// (async () => {
+//   window.SolanaConnection = new Connection("sdfs", { wsEndpoint: "" });
+//   console.log(window.SolanaConnection);
+// })();
 function App() {
   return <SolanaWallet />;
 }
@@ -39,17 +49,10 @@ root.render(<App />);
 
 export const SolanaWallet: FC = (props) => {
   // The network can be set to 'devnet', 'testnet', or 'mainnet-beta'.
-  const network = WalletAdapterNetwork.Mainnet;
+  const network = WalletAdapterNetwork.Devnet;
 
   // You can also provide a custom RPC endpoint.
-  const endpoint = useMemo(() => {
-    if (network === "mainnet-beta") {
-      return "https://swr.xnftdata.com/rpc-proxy/";
-    } else {
-      return clusterApiUrl(network);
-    }
-  }, [network]);
-
+  const endpoint = useMemo(() => clusterApiUrl(network), [network]);
   // @solana/wallet-adapter-wallets includes all the adapters but supports tree shaking and lazy loading --
   // Only the wallets you configure here will be compiled into your application, and only the dependencies
   // of wallets that your users connect to will be loaded.
@@ -68,6 +71,7 @@ export const SolanaWallet: FC = (props) => {
       <WalletProvider wallets={wallets} autoConnect>
         <WalletModalProvider>
           <BaseWalletMultiButton labels={LABELS} />
+          <CreateOrderButton />
           <PortalComponent />
         </WalletModalProvider>
       </WalletProvider>

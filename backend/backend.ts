@@ -15,9 +15,15 @@ export function formatAddress(a: string) {
   return a.slice(0, 4) + ".." + a.slice(-4);
 }
 const loginScriptTag = url.frontend("/login/Login.tsx", solanaWalletStyles);
+const conncectionScriptTag = url.frontend(
+  "ConnectionFrontend.ts",
+  (mini) =>
+    mini.html`<script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>`
+);
+
 head(
   (mini) =>
-    mini.html`<title>mininext</title>${commonHead}${cssReset}${loginScriptTag}`
+    mini.html`<title>mininext</title>${commonHead}${cssReset}${loginScriptTag}${conncectionScriptTag}`
 );
 
 export const MaybeLoggedin = url.data(async (mini) => {

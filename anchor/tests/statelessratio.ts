@@ -107,6 +107,7 @@ describe("statelessratio", () => {
       payer.publicKey,
       590000000
     );
+    console.log("approve sig", apo);
     const latestBlockHash = await connection.getLatestBlockhash();
 
     const confirmedTx = await connection.confirmTransaction({
@@ -124,7 +125,7 @@ describe("statelessratio", () => {
     if (!logsA) {
       console.log("No logs found");
     }
-    console.log("approve tx confirmed", logsA);
+    console.log("approve tx confirmed", logsA, confirmedTx);
     // Confirm the transaction.
     console.log(`Confirmed transaction 1: ${confirmedTx.context.slot}`);
     console.log("MAAAKEauth: ", makerAuthority, "bump: ", mABump);
